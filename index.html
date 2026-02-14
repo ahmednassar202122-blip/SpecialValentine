@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine? 💕</title>
+    <title>Will You Be My Valentine?</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -56,11 +56,11 @@
             z-index: 2;
         }
 
-        .question-page, .answer-page {
+        .page {
             display: none;
         }
 
-        .question-page.active, .answer-page.active {
+        .page.active {
             display: block;
             animation: fadeIn 0.5s ease-in;
         }
@@ -131,21 +131,15 @@
             position: absolute;
         }
 
-        .answer-page h2 {
-            color: #e94560;
-            font-size: 2em;
-            margin-bottom: 30px;
+        .love-message {
+            margin-top: 40px;
         }
 
-        .answer-page p {
+        .love-message p {
             color: #555;
             font-size: 1.3em;
             line-height: 1.8;
             margin-bottom: 20px;
-        }
-
-        .love-message {
-            margin-top: 40px;
         }
 
         .heart-emoji {
@@ -162,7 +156,12 @@
             }
         }
 
-        /* Abuse warning overlay */
+        h2 {
+            color: #e94560;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
         .abuse-warning {
             position: fixed;
             top: 50%;
@@ -177,13 +176,13 @@
             text-align: center;
             z-index: 9999;
             display: none;
-            animation: flashWarning 0.5s ease-in-out;
             box-shadow: 0 0 50px rgba(255, 68, 68, 0.5);
             border: 5px solid #ff4444;
         }
 
         .abuse-warning.show {
             display: block;
+            animation: flashWarning 0.5s ease-in-out;
         }
 
         @keyframes flashWarning {
@@ -194,6 +193,46 @@
             50% {
                 opacity: 0.8;
                 transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        @keyframes shakeAndPulse {
+            0%, 100% { transform: translateX(0) scale(1); }
+            10% { transform: translateX(-15px) scale(1.2); }
+            20% { transform: translateX(15px) scale(0.8); }
+            30% { transform: translateX(-15px) scale(1.2); }
+            40% { transform: translateX(15px) scale(0.8); }
+            50% { transform: translateX(-10px) scale(1.1); }
+            60% { transform: translateX(10px) scale(0.9); }
+            70% { transform: translateX(-5px) scale(1.05); }
+            80% { transform: translateX(5px) scale(0.95); }
+            90% { transform: translateX(0) scale(1); }
+        }
+        
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg) scale(1.05); }
+            75% { transform: rotate(5deg) scale(0.95); }
+        }
+        
+        @keyframes shrinkAndFade {
+            0% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: scale(1.3) rotate(180deg); 
+                opacity: 0.5; 
+            }
+            100% { 
+                transform: scale(0) rotate(360deg); 
+                opacity: 0; 
             }
         }
 
@@ -211,7 +250,7 @@
                 font-size: 1em;
             }
 
-            .answer-page p {
+            .love-message p {
                 font-size: 1.1em;
             }
 
@@ -225,32 +264,34 @@
 <body>
     <div class="hearts" id="hearts"></div>
     
-   
+    <div class="abuse-warning" id="abuseWarning">
+        STOP!!<br>ABUSE IS NOT LOVE
+    </div>
     
     <div class="container">
-        <div class="question-page active" id="questionPage">
-            <h1>Will You Be My Valentine? 💕</h1>
+        <div class="page active" id="questionPage">
+            <h1>Will You Be My Valentine? &#128149;</h1>
             
             <div class="gif-container">
                 <img src="https://media.giphy.com/media/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="cute asking">
             </div>
             
             <div class="buttons">
-                <button id="yesBtn">Yes! 💖</button>
+                <button id="yesBtn">Yes! &#128150;</button>
                 <button id="noBtn">No</button>
             </div>
         </div>
 
-        <div class="answer-page" id="answerPage">
-            <div class="heart-emoji">💕</div>
+        <div class="page" id="answerPage">
+            <div class="heart-emoji">&#128149;</div>
             <h2>I knew you'd say yes!</h2>
             <div class="love-message">
-                <p>I know it's hard not spending Valentine's Day together, but I want you to know that I love you with all my heart. There is nothing more in this world that I want right now than being with you. Distance may keep us apart today, but nothing can diminish what we have. You mean everything to me. 💕</p>
+                <p>I know it's hard not spending Valentine's Day together, but I want you to know that I love you with all my heart. There is nothing more in this world that I want right now than being with you. Distance may keep us apart today, but nothing can diminish what we have. You mean everything to me. &#128149;</p>
                 <div style="margin-top: 40px; font-size: 2em; color: #e94560; font-weight: bold; direction: rtl;">
-                    ❤️ بحبك يا نور ❤️
+                    &#10084;&#65039; بحبك يا نور &#10084;&#65039;
                 </div>
                 <div style="margin-top: 20px; font-size: 1.5em;">
-                    💕 ❤️ 💖 ❤️ 💕
+                    &#128149; &#10084;&#65039; &#128150; &#10084;&#65039; &#128149;
                 </div>
             </div>
             <div class="gif-container">
@@ -260,208 +301,152 @@
     </div>
 
     <script>
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const questionPage = document.getElementById('questionPage');
-        const answerPage = document.getElementById('answerPage');
-        const abuseWarning = document.getElementById('abuseWarning');
+        var yesBtn = document.getElementById('yesBtn');
+        var noBtn = document.getElementById('noBtn');
+        var questionPage = document.getElementById('questionPage');
+        var answerPage = document.getElementById('answerPage');
+        var abuseWarning = document.getElementById('abuseWarning');
         
-        let noClickCount = 0;
-        const noMessages = [
+        var noClickCount = 0;
+        var noMessages = [
             "No",
-            "Are you sure?? 🥺",
-            "Really?? 😢",
-            "Think again!! 💔",
-            "Baby please... 🥹",
-            "You're breaking my heart 💔😭",
-            "Last chance!! 😢💕"
-            " STOP!!ABUSE IS NOT LOVE"
-    </div>
-    
+            "Are you sure?? \u{1F97A}",
+            "Really?? \u{1F622}",
+            "Think again!! \u{1F494}",
+            "Baby please... \u{1F979}",
+            "You're breaking my heart \u{1F494}\u{1F62D}",
+            "Last chance!! \u{1F622}\u{1F495}"
         ];
         
-        // Create falling hearts
         function createHeart() {
-            const heart = document.createElement('div');
+            var heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.innerHTML = '❤️';
+            heart.innerHTML = '\u2764\uFE0F';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 3 + 5 + 's';
             heart.style.fontSize = Math.random() * 20 + 20 + 'px';
             document.getElementById('hearts').appendChild(heart);
             
-            setTimeout(() => {
+            setTimeout(function() {
                 heart.remove();
             }, 8000);
         }
         
         setInterval(createHeart, 300);
 
-        // Yes button - show the message
-        yesBtn.addEventListener('click', () => {
+        yesBtn.addEventListener('click', function() {
             questionPage.classList.remove('active');
             answerPage.classList.add('active');
             
-            // Create celebration hearts
-            for (let i = 0; i < 30; i++) {
+            for (var i = 0; i < 30; i++) {
                 setTimeout(createHeart, i * 100);
             }
         });
 
-       
+        function showAbuseWarning() {
+            abuseWarning.classList.add('show');
+            setTimeout(function() {
+                abuseWarning.classList.remove('show');
+            }, 2000);
         }
 
-        // No button - changes text and gets smaller, yes gets MUCH bigger
-        noBtn.addEventListener('click', () => {
+        noBtn.addEventListener('click', function() {
             noClickCount++;
             
             if (noClickCount < noMessages.length) {
                 noBtn.textContent = noMessages[noClickCount];
                 
-                // Make no button smaller
-                const newNoPadding = Math.max(5, 15 - noClickCount * 2);
-                const newNoFontSize = Math.max(0.7, 1.2 - noClickCount * 0.1);
-                noBtn.style.padding = `${newNoPadding}px ${newNoPadding * 2}px`;
-                noBtn.style.fontSize = `${newNoFontSize}em`;
+                var newNoPadding = Math.max(5, 15 - noClickCount * 2);
+                var newNoFontSize = Math.max(0.7, 1.2 - noClickCount * 0.1);
+                noBtn.style.padding = newNoPadding + 'px ' + (newNoPadding * 2) + 'px';
+                noBtn.style.fontSize = newNoFontSize + 'em';
                 
-                // Make yes button MUCH bigger with each click
-                const newYesPadding = 15 + noClickCount * 5;
-                const newYesFontSize = 1.2 + noClickCount * 0.3;  // Grows faster now!
-                yesBtn.style.padding = `${newYesPadding}px ${newYesPadding * 2}px`;
-                yesBtn.style.fontSize = `${newYesFontSize}em`;
+                var newYesPadding = 15 + noClickCount * 5;
+                var newYesFontSize = 1.2 + noClickCount * 0.3;
+                yesBtn.style.padding = newYesPadding + 'px ' + (newYesPadding * 2) + 'px';
+                yesBtn.style.fontSize = newYesFontSize + 'em';
                 
-                // Show abuse warning after 5th click (second to last message)
                 if (noClickCount === 5) {
                     showAbuseWarning();
                 }
                 
-                // Intense shake and pulse animation
                 noBtn.style.animation = 'shakeAndPulse 0.6s';
-                setTimeout(() => {
+                setTimeout(function() {
                     noBtn.style.animation = 'wobble 0.5s infinite';
                 }, 600);
             } else {
-                // After all messages, make it disappear with animation
                 noBtn.style.animation = 'shrinkAndFade 0.5s forwards';
-                setTimeout(() => {
+                setTimeout(function() {
                     noBtn.style.display = 'none';
                 }, 500);
             }
         });
         
-        // No button - moves away when hovered with faster movement
-        noBtn.addEventListener('mouseenter', () => {
+        noBtn.addEventListener('mouseenter', function() {
             if (noClickCount >= 1) {
-                const container = document.querySelector('.buttons');
-                const containerRect = container.getBoundingClientRect();
+                var container = document.querySelector('.buttons');
+                var containerRect = container.getBoundingClientRect();
                 
-                const maxX = containerRect.width - noBtn.offsetWidth - 20;
-                const maxY = 120;
+                var maxX = containerRect.width - noBtn.offsetWidth - 20;
+                var maxY = 120;
                 
-                const randomX = Math.random() * maxX;
-                const randomY = (Math.random() - 0.5) * maxY;
+                var randomX = Math.random() * maxX;
+                var randomY = (Math.random() - 0.5) * maxY;
                 
                 noBtn.style.transition = 'all 0.15s ease-out';
                 noBtn.style.left = randomX + 'px';
                 noBtn.style.top = randomY + 'px';
                 
-                const randomScale = 0.7 + Math.random() * 0.6;
-                noBtn.style.transform = `scale(${randomScale})`;
+                var randomScale = 0.7 + Math.random() * 0.6;
+                noBtn.style.transform = 'scale(' + randomScale + ')';
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     noBtn.style.transform = 'scale(1)';
                 }, 150);
             }
         });
 
-        // For mobile - move on touch
-        noBtn.addEventListener('touchstart', (e) => {
+        noBtn.addEventListener('touchstart', function(e) {
             if (noClickCount >= 1) {
                 e.preventDefault();
-                const container = document.querySelector('.buttons');
-                const containerRect = container.getBoundingClientRect();
+                var container = document.querySelector('.buttons');
+                var containerRect = container.getBoundingClientRect();
                 
-                const maxX = containerRect.width - noBtn.offsetWidth - 20;
-                const maxY = 120;
+                var maxX = containerRect.width - noBtn.offsetWidth - 20;
+                var maxY = 120;
                 
-                const randomX = Math.random() * maxX;
-                const randomY = (Math.random() - 0.5) * maxY;
+                var randomX = Math.random() * maxX;
+                var randomY = (Math.random() - 0.5) * maxY;
                 
                 noBtn.style.transition = 'all 0.15s ease-out';
                 noBtn.style.left = randomX + 'px';
                 noBtn.style.top = randomY + 'px';
                 
-                const randomScale = 0.7 + Math.random() * 0.6;
-                noBtn.style.transform = `scale(${randomScale})`;
+                var randomScale = 0.7 + Math.random() * 0.6;
+                noBtn.style.transform = 'scale(' + randomScale + ')';
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     noBtn.style.transform = 'scale(1)';
                 }, 150);
             }
         });
         
-        // Make button move randomly every 2 seconds after 3rd click
-        setInterval(() => {
+        setInterval(function() {
             if (noClickCount >= 3 && noBtn.style.display !== 'none') {
-                const container = document.querySelector('.buttons');
-                const containerRect = container.getBoundingClientRect();
+                var container = document.querySelector('.buttons');
+                var containerRect = container.getBoundingClientRect();
                 
-                const maxX = containerRect.width - noBtn.offsetWidth - 20;
-                const maxY = 120;
+                var maxX = containerRect.width - noBtn.offsetWidth - 20;
+                var maxY = 120;
                 
-                const randomX = Math.random() * maxX;
-                const randomY = (Math.random() - 0.5) * maxY;
+                var randomX = Math.random() * maxX;
+                var randomY = (Math.random() - 0.5) * maxY;
                 
                 noBtn.style.transition = 'all 0.3s ease-in-out';
                 noBtn.style.left = randomX + 'px';
                 noBtn.style.top = randomY + 'px';
             }
         }, 2000);
-        
-        // Add animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
-            }
-            
-            @keyframes shakeAndPulse {
-                0%, 100% { transform: translateX(0) scale(1); }
-                10% { transform: translateX(-15px) scale(1.2); }
-                20% { transform: translateX(15px) scale(0.8); }
-                30% { transform: translateX(-15px) scale(1.2); }
-                40% { transform: translateX(15px) scale(0.8); }
-                50% { transform: translateX(-10px) scale(1.1); }
-                60% { transform: translateX(10px) scale(0.9); }
-                70% { transform: translateX(-5px) scale(1.05); }
-                80% { transform: translateX(5px) scale(0.95); }
-                90% { transform: translateX(0) scale(1); }
-            }
-            
-            @keyframes wobble {
-                0%, 100% { transform: rotate(0deg); }
-                25% { transform: rotate(-5deg) scale(1.05); }
-                75% { transform: rotate(5deg) scale(0.95); }
-            }
-            
-            @keyframes shrinkAndFade {
-                0% { 
-                    transform: scale(1) rotate(0deg); 
-                    opacity: 1; 
-                }
-                50% { 
-                    transform: scale(1.3) rotate(180deg); 
-                    opacity: 0.5; 
-                }
-                100% { 
-                    transform: scale(0) rotate(360deg); 
-                    opacity: 0; 
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
