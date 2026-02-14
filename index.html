@@ -225,9 +225,7 @@
 <body>
     <div class="hearts" id="hearts"></div>
     
-    <div class="abuse-warning" id="abuseWarning">
-        STOP!!<br>ABUSE IS NOT LOVE
-    </div>
+   
     
     <div class="container">
         <div class="question-page active" id="questionPage">
@@ -277,6 +275,9 @@
             "Baby please... 🥹",
             "You're breaking my heart 💔😭",
             "Last chance!! 😢💕"
+            " STOP!!ABUSE IS NOT LOVE"
+    </div>
+    
         ];
         
         // Create falling hearts
@@ -307,12 +308,7 @@
             }
         });
 
-        // Show abuse warning
-        function showAbuseWarning() {
-            abuseWarning.classList.add('show');
-            setTimeout(() => {
-                abuseWarning.classList.remove('show');
-            }, 2000);
+       
         }
 
         // No button - changes text and gets smaller, yes gets MUCH bigger
