@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine? ðŸ’•</title>
+    <title>Will You Be My Valentine? 💕</title>
     <style>
         * {
             margin: 0;
@@ -162,6 +162,41 @@
             }
         }
 
+        /* Abuse warning overlay */
+        .abuse-warning {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: #ff4444;
+            padding: 50px;
+            border-radius: 20px;
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            z-index: 9999;
+            display: none;
+            animation: flashWarning 0.5s ease-in-out;
+            box-shadow: 0 0 50px rgba(255, 68, 68, 0.5);
+            border: 5px solid #ff4444;
+        }
+
+        .abuse-warning.show {
+            display: block;
+        }
+
+        @keyframes flashWarning {
+            0%, 100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 40px 20px;
@@ -179,40 +214,49 @@
             .answer-page p {
                 font-size: 1.1em;
             }
+
+            .abuse-warning {
+                font-size: 1.8em;
+                padding: 30px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="hearts" id="hearts"></div>
     
+    <div class="abuse-warning" id="abuseWarning">
+        STOP!!<br>ABUSE IS NOT LOVE
+    </div>
+    
     <div class="container">
         <div class="question-page active" id="questionPage">
-            <h1>Will You Be My Valentine? ðŸ’•</h1>
+            <h1>Will You Be My Valentine? 💕</h1>
             
             <div class="gif-container">
-                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY3ODkwYWJjZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="cute asking" onerror="this.src='https://media.giphy.com/media/KztT2c4u8mYYUiMKdJ/giphy.gif'">
+                <img src="https://media.giphy.com/media/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="cute asking">
             </div>
             
             <div class="buttons">
-                <button id="yesBtn">Yes! ðŸ’–</button>
+                <button id="yesBtn">Yes! 💖</button>
                 <button id="noBtn">No</button>
             </div>
         </div>
 
         <div class="answer-page" id="answerPage">
-            <div class="heart-emoji">ðŸ’•</div>
+            <div class="heart-emoji">💕</div>
             <h2>I knew you'd say yes!</h2>
             <div class="love-message">
-                <p>I know it's hard not spending Valentine's Day together, but I want you to know that I love you with all my heart. There is nothing more in this world that I want right now than being with you. Distance may keep us apart today, but nothing can diminish what we have. You mean everything to me. ðŸ’•</p>
+                <p>I know it's hard not spending Valentine's Day together, but I want you to know that I love you with all my heart. There is nothing more in this world that I want right now than being with you. Distance may keep us apart today, but nothing can diminish what we have. You mean everything to me. 💕</p>
                 <div style="margin-top: 40px; font-size: 2em; color: #e94560; font-weight: bold; direction: rtl;">
-                    â¤ï¸ Ø¨Ø­Ø¨Ùƒ ÙŠØ§ Ù†ÙˆØ± â¤ï¸
+                    ❤️ بحبك يا نور ❤️
                 </div>
                 <div style="margin-top: 20px; font-size: 1.5em;">
-                    ðŸ’• â¤ï¸ ðŸ’– â¤ï¸ ðŸ’•
+                    💕 ❤️ 💖 ❤️ 💕
                 </div>
             </div>
             <div class="gif-container">
-                <img src="https://media.giphy.com/media/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="love" onerror="this.src='https://media.giphy.com/media/l0HlSLbAaPIMQUkLe/giphy.gif'">
+                <img src="https://media.giphy.com/media/l0HlSLbAaPIMQUkLe/giphy.gif" alt="love">
             </div>
         </div>
     </div>
@@ -222,23 +266,24 @@
         const noBtn = document.getElementById('noBtn');
         const questionPage = document.getElementById('questionPage');
         const answerPage = document.getElementById('answerPage');
+        const abuseWarning = document.getElementById('abuseWarning');
         
         let noClickCount = 0;
         const noMessages = [
             "No",
-            "Are you sure?? ðŸ¥º",
-            "Really?? ðŸ˜¢",
-            "Think again!! ðŸ’”",
-            "Baby please... ðŸ¥¹",
-            "You're breaking my heart ðŸ’”ðŸ˜­",
-            "Last chance!! ðŸ˜¢ðŸ’•"
+            "Are you sure?? 🥺",
+            "Really?? 😢",
+            "Think again!! 💔",
+            "Baby please... 🥹",
+            "You're breaking my heart 💔😭",
+            "Last chance!! 😢💕"
         ];
         
         // Create falling hearts
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.innerHTML = 'â¤ï¸';
+            heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 3 + 5 + 's';
             heart.style.fontSize = Math.random() * 20 + 20 + 'px';
@@ -262,7 +307,15 @@
             }
         });
 
-        // No button - changes text and gets smaller, yes gets bigger
+        // Show abuse warning
+        function showAbuseWarning() {
+            abuseWarning.classList.add('show');
+            setTimeout(() => {
+                abuseWarning.classList.remove('show');
+            }, 2000);
+        }
+
+        // No button - changes text and gets smaller, yes gets MUCH bigger
         noBtn.addEventListener('click', () => {
             noClickCount++;
             
@@ -275,11 +328,16 @@
                 noBtn.style.padding = `${newNoPadding}px ${newNoPadding * 2}px`;
                 noBtn.style.fontSize = `${newNoFontSize}em`;
                 
-                // Make yes button bigger
-                const newYesPadding = 15 + noClickCount * 3;
-                const newYesFontSize = 1.2 + noClickCount * 0.15;
+                // Make yes button MUCH bigger with each click
+                const newYesPadding = 15 + noClickCount * 5;
+                const newYesFontSize = 1.2 + noClickCount * 0.3;  // Grows faster now!
                 yesBtn.style.padding = `${newYesPadding}px ${newYesPadding * 2}px`;
                 yesBtn.style.fontSize = `${newYesFontSize}em`;
+                
+                // Show abuse warning after 5th click (second to last message)
+                if (noClickCount === 5) {
+                    showAbuseWarning();
+                }
                 
                 // Intense shake and pulse animation
                 noBtn.style.animation = 'shakeAndPulse 0.6s';
@@ -294,27 +352,23 @@
                 }, 500);
             }
         });
-
-        // Make No button constantly wobble after first click
-        let wobbleInterval;
         
-        // No button - moves away when hovered (makes it even harder) with faster movement
+        // No button - moves away when hovered with faster movement
         noBtn.addEventListener('mouseenter', () => {
-            if (noClickCount >= 1) { // Start moving after 1 click
+            if (noClickCount >= 1) {
                 const container = document.querySelector('.buttons');
                 const containerRect = container.getBoundingClientRect();
                 
                 const maxX = containerRect.width - noBtn.offsetWidth - 20;
-                const maxY = 120; // Allow more vertical movement
+                const maxY = 120;
                 
                 const randomX = Math.random() * maxX;
                 const randomY = (Math.random() - 0.5) * maxY;
                 
-                noBtn.style.transition = 'all 0.15s ease-out'; // Faster movement
+                noBtn.style.transition = 'all 0.15s ease-out';
                 noBtn.style.left = randomX + 'px';
                 noBtn.style.top = randomY + 'px';
                 
-                // Random scale for extra chaos
                 const randomScale = 0.7 + Math.random() * 0.6;
                 noBtn.style.transform = `scale(${randomScale})`;
                 
@@ -324,7 +378,7 @@
             }
         });
 
-        // For mobile - move on touch with faster response
+        // For mobile - move on touch
         noBtn.addEventListener('touchstart', (e) => {
             if (noClickCount >= 1) {
                 e.preventDefault();
@@ -368,7 +422,7 @@
             }
         }, 2000);
         
-        // Add shake animation
+        // Add animations
         const style = document.createElement('style');
         style.textContent = `
             @keyframes shake {
